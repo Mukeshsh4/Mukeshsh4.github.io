@@ -1,0 +1,637 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mukesh H | Data Analyst</title>
+<meta name="description" content="Mukesh H, Data Analyst skilled in Power BI, SQL, Python and Excel. Portfolio of offer-campaign analysis, dashboards, KPI reporting and churn analysis.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Mukesh H | Data Analyst">
+<meta property="og:description" content="Mukesh H, Data Analyst skilled in Power BI, SQL, Python and Excel. Portfolio of offer-campaign analysis, dashboards, KPI reporting and churn analysis.">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Mukesh H | Data Analyst">
+<meta name="twitter:description" content="Mukesh H, Data Analyst skilled in Power BI, SQL, Python and Excel. Portfolio of offer-campaign analysis, dashboards, KPI reporting and churn analysis.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,500..900&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: the portfolio is a report canvas. Tiles on a 12-column board, a slicer that filters projects, a tools-by-project matrix, a to-scale career timeline. Dark-first, teal ink with one amber accent. */
+:root {
+  --bg: #071a24;
+  --tile: #0e2a38;
+  --tile-2: #12394a;
+  --ink: #e7f1f3;
+  --muted: #93aeb8;
+  --line: #1f4254;
+  --grid: #153646;
+  --accent: #f5c21b;
+  --accent-ink: #f5c21b;
+  --on-accent: #071a24;
+  --teal: #37c9bf;
+  --bar: #3d6a7e;
+
+  --font-display: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --font-body: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  color-scheme: dark;
+}
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    --bg: #e1ebee;
+    --tile: #f6fafa;
+    --tile-2: #e8f1f2;
+    --ink: #0a2230;
+    --muted: #4a6470;
+    --line: #c2d3d8;
+    --grid: #dce8eb;
+    --accent: #f2b705;
+    --accent-ink: #7a5200;
+    --on-accent: #0a2230;
+    --teal: #0b8481;
+    --bar: #9db3bc;
+    color-scheme: light;
+  }
+}
+:root[data-theme="light"] {
+  --bg: #e1ebee;
+  --tile: #f6fafa;
+  --tile-2: #e8f1f2;
+  --ink: #0a2230;
+  --muted: #4a6470;
+  --line: #c2d3d8;
+  --grid: #dce8eb;
+  --accent: #f2b705;
+  --accent-ink: #7a5200;
+  --on-accent: #0a2230;
+  --teal: #0b8481;
+  --bar: #9db3bc;
+  color-scheme: light;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+a { color: inherit; }
+a:focus-visible, button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+[id] { scroll-margin-top: 72px; }
+
+.wrap {
+  width: 100%;
+  max-width: 1120px;
+  margin-inline: auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+.mono {
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.muted { color: var(--muted); }
+
+/* Page tabs */
+.top {
+  position: sticky;
+  top: env(safe-area-inset-top, 0px);
+  z-index: 5;
+  background: var(--bg);
+  border-bottom: 1px solid var(--line);
+}
+.top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 10px; }
+.mark {
+  font-family: var(--font-display);
+  font-stretch: 125%;
+  font-weight: 800;
+  font-size: 1.05rem;
+  text-decoration: none;
+  letter-spacing: -0.01em;
+}
+.tabs { display: flex; gap: 4px; flex-wrap: wrap; justify-content: flex-end; }
+.tabs a {
+  padding: 5px 10px;
+  border-radius: 3px;
+  color: var(--muted);
+  text-decoration: none;
+}
+.tabs a:hover { background: var(--tile); color: var(--ink); }
+
+/* Board */
+.board {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 14px;
+  padding-block: 20px 28px;
+}
+.c-12 { grid-column: span 12; }
+.c-8 { grid-column: span 8; }
+.c-7 { grid-column: span 7; }
+.c-6 { grid-column: span 6; }
+.c-5 { grid-column: span 5; }
+.c-4 { grid-column: span 4; }
+.tile {
+  min-width: 0;
+  padding: 22px;
+  background: var(--tile);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+}
+.tile-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px 16px;
+  flex-wrap: wrap;
+  margin-bottom: 18px;
+}
+.tile-title { display: inline-flex; align-items: center; gap: 10px; color: var(--muted); }
+.tile-title::before { content: ""; width: 9px; height: 9px; background: var(--accent); }
+
+/* Hero */
+.hero {
+  background-color: var(--tile);
+  background-image:
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 36px 36px;
+  background-position: -1px -1px;
+  padding: clamp(24px, 4vw, 40px);
+}
+h1 {
+  margin: 14px 0 0;
+  font-family: var(--font-display);
+  font-stretch: 125%;
+  font-weight: 800;
+  font-size: clamp(2.7rem, 11.5vw, 6rem);
+  line-height: 0.95;
+  letter-spacing: -0.025em;
+}
+h1 .hl {
+  background: linear-gradient(transparent 62%, var(--accent) 62% 92%, transparent 92%);
+  color: var(--ink);
+  padding-right: 0.06em;
+}
+.role-line { margin: 22px 0 0; color: var(--teal); }
+.tagline {
+  margin: 12px 0 0;
+  max-width: 32ch;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(1.25rem, 3vw, 1.7rem);
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+.summary { margin: 14px 0 0; max-width: 60ch; color: var(--muted); }
+.cta { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
+.btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 10px 18px;
+  border: 1px solid var(--ink);
+  border-radius: 3px;
+  background: transparent;
+  color: var(--ink);
+  font: 500 0.95rem var(--font-body);
+  text-decoration: none;
+  cursor: pointer;
+}
+.btn.primary { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+.btn:hover { border-color: var(--accent); }
+.btn.primary:hover { filter: brightness(0.95); }
+
+/* KPIs */
+.kpi-tile { display: flex; flex-direction: column; }
+.kpis {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+}
+.kpi { background: var(--tile-2); padding: 16px; min-width: 0; display: flex; flex-direction: column; justify-content: space-between; gap: 8px; }
+.kpi .n {
+  font-family: var(--font-display);
+  font-stretch: 112%;
+  font-weight: 800;
+  font-size: clamp(1.9rem, 4vw, 2.5rem);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+}
+.kpi:first-child .n { color: var(--accent-ink); }
+.kpi .l { color: var(--muted); font-size: 0.85rem; line-height: 1.35; }
+
+/* Timeline */
+.tl-row + .tl-row { margin-top: 18px; }
+.tl-label { display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 12px; margin-bottom: 6px; }
+.tl-label strong { font-weight: 600; }
+.tl-label .when { color: var(--muted); font: 400 0.78rem var(--font-mono); font-variant-numeric: tabular-nums; }
+.tl-track {
+  position: relative;
+  height: 18px;
+  background-image: repeating-linear-gradient(to right, var(--line) 0 1px, transparent 1px calc(100% / 6));
+}
+.bar {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: calc(var(--s) / 72 * 100%);
+  width: calc(var(--w) / 72 * 100%);
+  background: var(--bar);
+  border-radius: 2px;
+}
+.bar.now { background: var(--accent); }
+.tl-axis { position: relative; height: 1.6em; margin-top: 8px; border-top: 1px solid var(--line); }
+.tl-axis span {
+  position: absolute;
+  top: 6px;
+  left: calc(var(--i) / 6 * 100%);
+  padding-left: 4px;
+  color: var(--muted);
+  font: 400 0.74rem var(--font-mono);
+}
+
+/* Slicer + projects */
+.slicer { display: flex; flex-wrap: wrap; gap: 6px; }
+.slicer button {
+  padding: 6px 14px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--muted);
+  font: 500 0.8rem var(--font-mono);
+  cursor: pointer;
+}
+.slicer button:hover { border-color: var(--teal); color: var(--ink); }
+.slicer button[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+.count { color: var(--muted); margin-bottom: 14px; }
+.projects { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; }
+.project {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 0;
+  padding: 18px;
+  background: var(--tile-2);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+}
+.project:hover { border-color: var(--teal); }
+.project h3 { margin: 0; font-family: var(--font-display); font-weight: 700; font-size: 1.15rem; line-height: 1.2; letter-spacing: -0.01em; }
+.project p { margin: 0; color: var(--muted); font-size: 0.95rem; }
+.project .kind { color: var(--teal); }
+.tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: auto; }
+.tag { padding: 2px 9px; border: 1px solid var(--line); border-radius: 999px; font: 500 0.76rem var(--font-mono); }
+
+/* Matrix */
+.scroll-x { overflow-x: auto; }
+table.matrix { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+.matrix th, .matrix td { padding: 8px 6px; text-align: center; border-bottom: 1px solid var(--line); }
+.matrix thead th { color: var(--muted); font: 500 0.7rem var(--font-mono); letter-spacing: 0.04em; text-transform: uppercase; }
+.matrix tbody th { text-align: left; font-weight: 500; padding-left: 0; white-space: nowrap; }
+.matrix tbody tr:hover { background: var(--tile-2); }
+.dot { display: inline-block; width: 12px; height: 12px; border-radius: 50%; background: var(--teal); vertical-align: middle; }
+.matrix-note { margin: 12px 0 0; color: var(--muted); font-size: 0.85rem; }
+
+/* Skills */
+.skill-group + .skill-group { margin-top: 16px; }
+.skill-group .k { margin-bottom: 6px; color: var(--muted); }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip { padding: 3px 11px; background: var(--tile-2); border: 1px solid var(--line); border-radius: 3px; font-size: 0.9rem; font-weight: 500; }
+.chip.key { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+
+/* Experience */
+.role { display: grid; grid-template-columns: minmax(0, 220px) minmax(0, 1fr); gap: 10px 36px; padding-block: 22px; border-top: 1px solid var(--line); }
+.role:first-of-type { border-top: 0; padding-top: 0; }
+.role:last-child { padding-bottom: 0; }
+.role h3 { margin: 0; font-family: var(--font-display); font-weight: 700; font-size: 1.15rem; line-height: 1.2; }
+.role .meta { display: flex; flex-direction: column; gap: 2px; color: var(--muted); }
+.role .meta .mono { color: var(--accent-ink); }
+.role dl { margin: 0; display: grid; gap: 14px; }
+.role dt { color: var(--teal); font: 500 0.74rem var(--font-mono); letter-spacing: 0.08em; text-transform: uppercase; }
+.role dd { margin: 2px 0 0; max-width: 66ch; }
+.role ul { margin: 0; padding-left: 1.1em; display: grid; gap: 6px; max-width: 66ch; }
+
+/* Education, certs, contact */
+.entry { padding-block: 12px; border-top: 1px solid var(--line); }
+.entry:first-of-type { border-top: 0; padding-top: 0; }
+.entry strong { font-weight: 600; }
+.entry .sub { color: var(--muted); font-size: 0.92rem; }
+.contact-item { display: flex; align-items: center; gap: 8px 16px; flex-wrap: wrap; padding-block: 14px; border-top: 1px solid var(--line); }
+.contact-item:first-of-type { border-top: 0; padding-top: 0; }
+.contact-item:last-child { padding-bottom: 0; }
+.contact-item .k { width: 84px; color: var(--muted); }
+.contact-item .val { flex: 1; min-width: 0; overflow-wrap: anywhere; font-size: 1.1rem; font-weight: 500; }
+.copy {
+  padding: 5px 12px;
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  background: var(--tile-2);
+  color: var(--ink);
+  font: 500 0.78rem var(--font-mono);
+  cursor: pointer;
+}
+.copy:hover { border-color: var(--accent); }
+
+footer { padding-block: 8px 40px; color: var(--muted); }
+
+@media (max-width: 860px) {
+  .c-8, .c-7, .c-6, .c-5, .c-4 { grid-column: 1 / -1; }
+  .role { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 520px) {
+  .tile { padding: 16px; }
+  .contact-item .k { width: 100%; }
+}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <a class="mark" href="#top">MH</a>
+    <nav class="tabs mono" aria-label="Report pages">
+      <a href="#projects">Projects</a>
+      <a href="#experience">Experience</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top" class="wrap">
+  <div class="board">
+
+    <section class="tile hero c-8" aria-label="Introduction">
+      <div class="mono muted">Portfolio report &middot; Ooty, Tamil Nadu</div>
+      <h1>Mukesh <span class="hl">H</span></h1>
+      <div class="role-line mono">Data Analyst &middot; Power BI &middot; SQL &middot; Python</div>
+      <p class="tagline">I turn business requirements into dashboards and reports that support decisions.</p>
+      <p class="summary">I extract, clean, transform and model data, build KPI reporting, and present the findings in a form the business can use.</p>
+      <div class="cta">
+        <a class="btn primary" href="#projects">See projects</a>
+        <a class="btn" href="#contact">Get in touch</a>
+      </div>
+    </section>
+
+    <section class="tile kpi-tile c-4" aria-label="Career at a glance">
+      <div class="tile-head"><span class="tile-title mono">At a glance</span></div>
+      <div class="kpis">
+        <div class="kpi"><div class="n">3 yrs</div><div class="l">as Data Analyst at Customer Centria</div></div>
+        <div class="kpi"><div class="n">5+ yrs</div><div class="l">in data and reporting roles since 2021</div></div>
+        <div class="kpi"><div class="n">5</div><div class="l">projects: three client campaigns, retail and churn</div></div>
+        <div class="kpi"><div class="n">2</div><div class="l">Forage certifications, Tata and KPMG AU</div></div>
+      </div>
+    </section>
+
+    <section class="tile c-12" aria-label="Career timeline">
+      <div class="tile-head">
+        <span class="tile-title mono">Career timeline</span>
+        <span class="mono muted">2021 &ndash; 2026</span>
+      </div>
+      <div role="img" aria-label="Timeline from 2021 to 2026: Infognana Software Solutions April 2021 to July 2022, Omega HMS September 2022 to July 2023, Customer Centria October 2023 to present.">
+        <div class="tl-row">
+          <div class="tl-label"><strong>Infognana Software Solutions</strong><span>AR Analyst</span><span class="when">Apr 2021 &ndash; Jul 2022</span></div>
+          <div class="tl-track"><div class="bar" style="--s:3;--w:16"></div></div>
+        </div>
+        <div class="tl-row">
+          <div class="tl-label"><strong>Omega HMS</strong><span>AR Analyst</span><span class="when">Sep 2022 &ndash; Jul 2023</span></div>
+          <div class="tl-track"><div class="bar" style="--s:20;--w:11"></div></div>
+        </div>
+        <div class="tl-row">
+          <div class="tl-label"><strong>Customer Centria</strong><span>Data Analyst</span><span class="when">Oct 2023 &ndash; Present</span></div>
+          <div class="tl-track"><div class="bar now" style="--s:33;--w:37"></div></div>
+        </div>
+        <div class="tl-axis" aria-hidden="true">
+          <span style="--i:0">2021</span><span style="--i:1">2022</span><span style="--i:2">2023</span><span style="--i:3">2024</span><span style="--i:4">2025</span><span style="--i:5">2026</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="tile c-12" id="projects" aria-label="Projects">
+      <div class="tile-head">
+        <span class="tile-title mono">Projects</span>
+        <div class="slicer" role="group" aria-label="Filter projects">
+          <button type="button" data-filter="all" aria-pressed="true">All</button>
+          <button type="button" data-filter="campaign" aria-pressed="false">Campaigns</button>
+          <button type="button" data-filter="retail" aria-pressed="false">Retail</button>
+          <button type="button" data-filter="churn" aria-pressed="false">Churn</button>
+        </div>
+      </div>
+      <div class="count mono" id="proj-count">Showing 5 of 5</div>
+      <div class="projects" id="proj-list">
+        <article class="project" data-type="campaign">
+          <span class="mono kind">Offer campaigns</span>
+          <h3>IndusInd Campaign Analysis</h3>
+          <p>Used Oracle SQL to analyze the performance of offer-based campaigns sent out for IndusInd and built dashboards that track campaign metrics, trends and key business indicators.</p>
+          <div class="tags"><span class="tag">Oracle SQL</span><span class="tag">Power BI</span></div>
+        </article>
+        <article class="project" data-type="campaign">
+          <span class="mono kind">Offer campaigns</span>
+          <h3>PVR Campaign Analysis</h3>
+          <p>Analyzed the performance of offer-based campaigns sent out for PVR, using Salesforce Calculated Insights as the data source, and built dashboards that track campaign metrics, trends and key business indicators.</p>
+          <div class="tags"><span class="tag">Salesforce Calculated Insights</span><span class="tag">Power BI</span></div>
+        </article>
+        <article class="project" data-type="campaign">
+          <span class="mono kind">Offer campaigns</span>
+          <h3>LuLu Campaign Analysis</h3>
+          <p>Used SQL to analyze the performance of offer-based campaigns sent out for LuLu and built dashboards that track campaign metrics, trends and key business indicators.</p>
+          <div class="tags"><span class="tag">SQL</span><span class="tag">Power BI</span></div>
+        </article>
+        <article class="project" data-type="retail">
+          <span class="mono kind">Retail analytics</span>
+          <h3>Online Retail Store Analysis</h3>
+          <p>Used SQL to analyze retail data and Power BI to visualize it, surfacing performance trends and insights the business can act on.</p>
+          <div class="tags"><span class="tag">SQL</span><span class="tag">Power BI</span></div>
+        </article>
+        <article class="project" data-type="churn">
+          <span class="mono kind">Customer analytics</span>
+          <h3>Churn Analysis</h3>
+          <p>Ran exploratory data analysis to understand customer churn patterns and charted the factors that influence churn most.</p>
+          <div class="tags"><span class="tag">Python</span><span class="tag">Pandas</span><span class="tag">NumPy</span><span class="tag">Matplotlib</span><span class="tag">Seaborn</span></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="tile c-7" id="skills" aria-label="Tools by project">
+      <div class="tile-head">
+        <span class="tile-title mono">Tools by project</span>
+      </div>
+      <div class="scroll-x">
+        <table class="matrix">
+          <thead>
+            <tr><th scope="col"><span class="sr-only" style="position:absolute;left:-9999px">Tool</span></th><th scope="col">IndusInd</th><th scope="col">PVR</th><th scope="col">LuLu</th><th scope="col">Retail</th><th scope="col">Churn</th></tr>
+          </thead>
+          <tbody>
+            <tr><th scope="row">Power BI</th><td><span class="dot" role="img" aria-label="Used"></span></td><td><span class="dot" role="img" aria-label="Used"></span></td><td><span class="dot" role="img" aria-label="Used"></span></td><td><span class="dot" role="img" aria-label="Used"></span></td><td></td></tr>
+            <tr><th scope="row">Oracle SQL</th><td><span class="dot" role="img" aria-label="Used"></span></td><td></td><td></td><td></td><td></td></tr>
+            <tr><th scope="row">SQL</th><td></td><td></td><td><span class="dot" role="img" aria-label="Used"></span></td><td><span class="dot" role="img" aria-label="Used"></span></td><td></td></tr>
+            <tr><th scope="row">Salesforce Calculated Insights</th><td></td><td><span class="dot" role="img" aria-label="Used"></span></td><td></td><td></td><td></td></tr>
+            <tr><th scope="row">Python</th><td></td><td></td><td></td><td></td><td><span class="dot" role="img" aria-label="Used"></span></td></tr>
+            <tr><th scope="row">Pandas &amp; NumPy</th><td></td><td></td><td></td><td></td><td><span class="dot" role="img" aria-label="Used"></span></td></tr>
+            <tr><th scope="row">Matplotlib &amp; Seaborn</th><td></td><td></td><td></td><td></td><td><span class="dot" role="img" aria-label="Used"></span></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="matrix-note">A dot marks a tool used in that project.</p>
+    </section>
+
+    <section class="tile c-5" aria-label="Skills">
+      <div class="tile-head"><span class="tile-title mono">Skills</span></div>
+      <div class="skill-group"><div class="k mono">BI and visualization</div><div class="chips"><span class="chip key">Power BI</span><span class="chip">Tableau</span><span class="chip">Excel</span></div></div>
+      <div class="skill-group"><div class="k mono">Programming and query</div><div class="chips"><span class="chip key">SQL</span><span class="chip key">Python</span><span class="chip key">DAX</span></div></div>
+      <div class="skill-group"><div class="k mono">Data preparation</div><div class="chips"><span class="chip">Power Query</span><span class="chip">Data cleaning</span><span class="chip">Data transformation</span><span class="chip">Data aggregation</span></div></div>
+      <div class="skill-group"><div class="k mono">Data modeling</div><div class="chips"><span class="chip">Relationships</span><span class="chip">Data models</span><span class="chip">KPI measures</span><span class="chip">Reporting optimization</span></div></div>
+      <div class="skill-group"><div class="k mono">Analytics</div><div class="chips"><span class="chip">Dashboard development</span><span class="chip">Business analysis</span><span class="chip">Trend analysis</span><span class="chip">Insights and reporting</span></div></div>
+    </section>
+
+    <section class="tile c-12" id="experience" aria-label="Experience">
+      <div class="tile-head">
+        <span class="tile-title mono">Experience</span>
+      </div>
+      <article class="role">
+        <div class="meta">
+          <h3>Data Analyst</h3>
+          <span>Customer Centria, Coimbatore</span>
+          <span class="mono">Oct 2023 &ndash; Present</span>
+        </div>
+        <dl>
+          <div><dt>Dashboards</dt><dd>Build interactive Power BI dashboards with filters, drill-downs, slicers and KPI-focused visuals, starting from the business requirement.</dd></div>
+          <div><dt>Data preparation</dt><dd>Extract, clean, transform and aggregate data from databases, APIs and files using Power Query.</dd></div>
+          <div><dt>Modeling and DAX</dt><dd>Design data models and relationships, and write DAX measures for business KPIs, performance tracking and trend analysis. Optimize models and reports for performance, usability and scalability.</dd></div>
+          <div><dt>Reliability</dt><dd>Configure data connections and scheduled refreshes, troubleshoot loading and connectivity issues, and validate outputs so dashboards stay accurate and consistent. Document sources, transformations, calculations and report requirements.</dd></div>
+          <div><dt>Insight and communication</dt><dd>Analyze campaign and business data to find trends, performance gaps and actions. Work with business analysts, data engineers and IT teams, and present findings in a clear, business-friendly format.</dd></div>
+        </dl>
+      </article>
+      <article class="role">
+        <div class="meta">
+          <h3>AR Analyst</h3>
+          <span>Omega HMS, Bengaluru</span>
+          <span class="mono">Sep 2022 &ndash; Jul 2023</span>
+        </div>
+        <ul>
+          <li>Performed accounts receivable analysis and supported routine financial reporting.</li>
+          <li>Reviewed account information, identified discrepancies and kept records accurate.</li>
+          <li>Prepared and updated reports to track receivables and operational performance.</li>
+        </ul>
+      </article>
+      <article class="role">
+        <div class="meta">
+          <h3>AR Analyst</h3>
+          <span>Infognana Software Solutions, Coimbatore</span>
+          <span class="mono">Apr 2021 &ndash; Jul 2022</span>
+        </div>
+        <ul>
+          <li>Supported accounts receivable operations and maintained accurate customer and transaction records.</li>
+          <li>Analyzed outstanding balances and assisted with reconciliation and reporting.</li>
+          <li>Prepared operational reports and worked with internal teams to resolve data discrepancies.</li>
+        </ul>
+      </article>
+    </section>
+
+    <section class="tile c-6" aria-label="Education">
+      <div class="tile-head"><span class="tile-title mono">Education</span></div>
+      <div class="entry">
+        <strong>B.E. Electronics and Communication Engineering</strong>
+        <div class="sub">CSI College of Engineering, Ooty</div>
+        <div class="sub mono" style="margin-top:4px">Jul 2014 &ndash; Jul 2018 &middot; CGPA 6.5</div>
+      </div>
+    </section>
+
+    <section class="tile c-6" aria-label="Certifications">
+      <div class="tile-head"><span class="tile-title mono">Certifications</span></div>
+      <div class="entry">
+        <strong>Data Visualization: Empowering Business with Effective Insights</strong>
+        <div class="sub">Forage &middot; Tata</div>
+      </div>
+      <div class="entry">
+        <strong>KPMG AU Data Analytics</strong>
+        <div class="sub">Forage</div>
+      </div>
+    </section>
+
+    <section class="tile c-12" id="contact" aria-label="Contact">
+      <div class="tile-head"><span class="tile-title mono">Contact</span></div>
+      <div class="contact-item">
+        <span class="k mono">Email</span>
+        <span class="val" id="c-email">shmukesh17@gmail.com</span>
+        <button class="copy" type="button" data-target="c-email">Copy</button>
+      </div>
+      <div class="contact-item">
+        <span class="k mono">Phone</span>
+        <span class="val" id="c-phone">9787636815</span>
+        <button class="copy" type="button" data-target="c-phone">Copy</button>
+      </div>
+      <div class="contact-item">
+        <span class="k mono">Location</span>
+        <span class="val">Ooty, Tamil Nadu</span>
+      </div>
+    </section>
+
+  </div>
+  <footer class="mono">&copy; 2026 Mukesh H</footer>
+</main>
+
+<script>
+(function () {
+  /* Slicer: filter projects by type */
+  var buttons = document.querySelectorAll('.slicer button');
+  var cards = document.querySelectorAll('#proj-list .project');
+  var count = document.getElementById('proj-count');
+  buttons.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var f = btn.getAttribute('data-filter');
+      var shown = 0;
+      buttons.forEach(function (b) { b.setAttribute('aria-pressed', b === btn ? 'true' : 'false'); });
+      cards.forEach(function (card) {
+        var show = f === 'all' || card.getAttribute('data-type') === f;
+        card.hidden = !show;
+        if (show) shown++;
+      });
+      count.textContent = 'Showing ' + shown + ' of ' + cards.length;
+    });
+  });
+
+  /* Copy buttons */
+  document.querySelectorAll('.copy').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var target = document.getElementById(btn.getAttribute('data-target'));
+      if (!target) return;
+      var text = target.textContent.trim();
+      function reset() { setTimeout(function () { btn.textContent = 'Copy'; }, 1800); }
+      function selectText() {
+        var range = document.createRange();
+        range.selectNodeContents(target);
+        var sel = window.getSelection();
+        sel.removeAllRanges();
+        sel.addRange(range);
+        btn.textContent = 'Selected';
+        reset();
+      }
+      try {
+        navigator.clipboard.writeText(text).then(function () {
+          btn.textContent = 'Copied';
+          reset();
+        }, selectText);
+      } catch (e) {
+        selectText();
+      }
+    });
+  });
+})();
+</script>
+
+</body>
+</html>
